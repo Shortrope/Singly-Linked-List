@@ -71,6 +71,7 @@ public class LList {
             newNode.next = n.next;
             n.next = newNode;
         }
+        size++;
         return true;
     }
 
@@ -117,16 +118,45 @@ public class LList {
     }
 
     public String remove() {
-        return "";
+        String s = first.value;
+        first = first.next;
+        size--;
+        return s;
     }
     public String removeFirst() {
-        return "";
+        return remove();
     }
     public String removeLast() {
-        return "";
+        Node n = first;
+        for (int i = 1; i < size -1; i++) {
+            n = n.next;
+        }
+        String s = n.next.value;
+        n.next = null;
+        size--;
+        return s;
     }
     public String removeIndex(int index) {
-        return "";
+        if (index < 0 || index >= size) {
+            return null;
+        }
+        String s = "";
+        if (index == 0) {
+            s = first.value;
+            removeFirst();
+        }
+        else {
+            Node n = first;
+            Node previous = n;
+            for (int i = 0; i < index; i++) {
+                previous = n;
+                n = n.next;
+            }
+            s = n.value;
+            previous.next = n.next;
+        }
+        size--;
+        return s;
     }
 
 
