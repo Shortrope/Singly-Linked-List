@@ -37,11 +37,9 @@ public class LList {
             size++;
         }
     }
-
     public void addFirst(String s) {
         add(s);
     }
-
     public void addLast(String s) {
         if (size == 0) add(s);
         else {
@@ -56,16 +54,33 @@ public class LList {
             size++;
         }
     }
+    public boolean addIndex(String s, int index) {
+        if (index < 0 || index >= size) {
+            return false;
+        }
+        if (index == 0){
+            addFirst(s);
+        }
+        else {
+            Node newNode = new Node();
+            newNode.value = s;
+            Node n = first;
+            for (int i = 0; i < index-1; i++) {
+                n = n.next;
+            }
+            newNode.next = n.next;
+            n.next = newNode;
+        }
+        return true;
+    }
 
     public String get() {
         if(size == 0) return null;
         else return first.value;
     }
-
     public String getFirst() {
         return get();
     }
-
     public String getLast() {
         if (size == 0) return null;
         else {
@@ -76,20 +91,42 @@ public class LList {
             return n.value;
         }
     }
-
-    public void addIndex(String s, int index) {
-        Node n = first;
-        for (int i = 0; i < index; i++) {
-           n = n.next;
-        }
-        n.value = s;
-    }
     public String getIndex(int index) {
+        if (index < 0 || index >= size) {
+            return null;
+        }
         Node n = first;
         for (int l = 0; l < index; l++) {
             n = n.next;
         }
         return n.value;
+    }
+
+    public boolean set(int index, String s){
+        if (index < 0 || index >= size) {
+            return false;
+        }
+        else {
+            Node n = first;
+            for (int i = 0; i < index; i++) {
+                n = n.next;
+            }
+            n.value = s;
+            return true;
+        }
+    }
+
+    public String remove() {
+        return "";
+    }
+    public String removeFirst() {
+        return "";
+    }
+    public String removeLast() {
+        return "";
+    }
+    public String removeIndex(int index) {
+        return "";
     }
 
 
